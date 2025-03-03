@@ -3,161 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security Login</title>
-
-    <style>
-        /* Styling the body to have a hacker-like cyber theme with background image */
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #0a0a0a; /* Fallback color */
-            background-image: url('https://securityintelligence.com/wp-content/uploads/2023/06/Cybersecurity-cybercrime-internet-scam-business-Cyber-security-platform-VPN-computer-privacy-protection-data-hacking-malware-virus-attack-defense-online-network-IoT-digital-techn.jpeg'); /* Replace with your image URL */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #00ff00; /* Green text */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full screen height */
-            margin: 0;
-            position: relative;
-        }
-        
-        /* Adding an overlay to make the form more readable over the background image */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
-            z-index: -1;
-        }
-
-        /* Styling the login container */
-        .container {
-            background-color: rgba(28, 28, 28, 0.8); /* Semi-transparent dark grey background */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glowing effect */
-            width: 350px;
-            text-align: center;
-            border: 2px solid #00ff00;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Title style */
-        .title {
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        /* Input fields styling */
-        .input-field {
-            margin-bottom: 15px;
-        }
-
-        /* Styling the input boxes */
-        .input-field input {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            margin-top: 5px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* Styling the login button */
-        .button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: #00ff00;
-            color: #1c1c1c;
-            cursor: pointer;
-            font-size: 16px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-        }
-
-        /* Message styling */
-        .message {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        
-        /* Link styling */
-        .link {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-        
-        .link a {
-            color: #00ff00;
-            text-decoration: none;
-        }
-        
-        .link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Authentication App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="title">Cyber Security Login</div>
-
-        <!-- Login form -->
-        <form id="loginForm">
-            <div class="input-field">
-                <label for="username">Username</label>
+    <div class="form-container">
+        <h2>User Registration</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
             </div>
-            <div class="input-field">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+            <div class="form-group">
+                <label for="secret_key">Secret Key:</label>
+                <input type="password" id="secret_key" name="secret_key" required>
             </div>
-
-            <!-- Login button -->
-            <button type="submit" class="button">Login</button>
-
-            <!-- Message to display login status -->
-            <div id="message" class="message"></div>
+            <button type="submit">Register</button>
         </form>
-        <div class="link">
-            Don't have an account? <a href="signup.html">Sign Up</a>
-        </div>
+        <div class="response" id="registerResponse"></div>
     </div>
 
-    <script>
-        // Adding event listener to the form
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevents the page from reloading on form submission
+    <div class="form-container" style="margin-top: 40px;">
+        <h2>User Authentication</h2>
+        <form id="authForm">
+            <div class="form-group">
+                <label for="authUsername">Username:</label>
+                <input type="text" id="authUsername" name="authUsername" required>
+            </div>
+            <div class="form-group">
+                <label for="C">C:</label>
+                <input type="number" id="C" name="C" required>
+            </div>
+            <div class="form-group">
+                <label for="c">c:</label>
+                <input type="number" id="c" name="c" required>
+            </div>
+            <div class="form-group">
+                <label for="s">s:</label>
+                <input type="number" id="s" name="s" required>
+            </div>
+            <button type="submit">Authenticate</button>
+        </form>
+        <div class="response" id="authResponse"></div>
+    </div>
 
-            const correctPassword = '12345'; // Hardcoded password (Not secure for real applications)
-            const password = document.getElementById('password').value;
-            const message = document.getElementById('message');
-
-            // Checking if the entered password is correct
-            if (password === correctPassword) {
-                message.style.color = '#00ff00';
-                message.textContent = 'Correct password. Logging in...';
-
-                // Redirect to another page after 2 seconds
-                setTimeout(() => {
-                    window.location.href = 'registration_successful.html';
-                }, 2000);
-            } else {
-                message.style.color = 'red';
-                message.textContent = 'Wrong password. Please try again.';
-            }
-        });
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
